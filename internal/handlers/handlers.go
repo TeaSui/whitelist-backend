@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -84,7 +85,7 @@ func (h *Handlers) Login(c *gin.Context) {
 
 	// In production, you would verify the signature here
 	// For demo, we'll just issue a simple JWT token
-	token := "demo-admin-token-" + req.Address + "-" + string(rune(time.Now().Unix()))
+	token := "demo-admin-token-" + req.Address + "-" + fmt.Sprintf("%d", time.Now().Unix())
 
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
